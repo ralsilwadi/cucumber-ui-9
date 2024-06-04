@@ -1,4 +1,4 @@
-const TGBasePage = require("./TGBasePage");
+const TGBasePage = require('./TGBasePage')
 
 class TGHtmlElementsPage extends TGBasePage {
 

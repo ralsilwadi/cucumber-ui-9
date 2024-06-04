@@ -1,17 +1,19 @@
-const { Then, When } = require("@badeball/cypress-cucumber-preprocessor");
-const TGHtmlElementsPage = require("../../../pages/TGHtmlElementsPage");
+const { Then, When } = require('@badeball/cypress-cucumber-preprocessor')
+const TGHtmlElementsPage = require('../../../pages/TGHtmlElementsPage')
 
-const tgHtmlElementsPage = new TGHtmlElementsPage();
+const tgHtmlElementsPage = new TGHtmlElementsPage()
 
 Then(/^user should see the "([^"]*)" page heading$/, (args1) => {
-  console.log(args1);
-  return true;
-});
+  console.log(args1)
+  return true
+})
 
 When(/^user clicks on the "([^"]*)" button$/, (label) => {
-  tgHtmlElementsPage.clickButtonByText(label);
-});
+  tgHtmlElementsPage.clickButtonByText(label)
+})
 
 Then(/^the text under it should be "([^"]*)"$/, (message) => {
-  tgHtmlElementsPage.getButtonMessage().should('have.text', message);
-});
+  tgHtmlElementsPage.getButtonMessage().should('have.text', message)
+
+  cy.log('asdasdsa').get().click().each().find().log().find().find().find().find()
+})
