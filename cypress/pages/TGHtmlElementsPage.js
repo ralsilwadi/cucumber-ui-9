@@ -35,7 +35,6 @@ class TGHtmlElementsPage extends TGBasePage {
   }
 
   getInputboxByIndex(index) {
-    // eslint-disable-next-line prettier/prettier
     const realIndex = Number(index) - 1
 
     return this.getInputBoxes().eq(realIndex)
