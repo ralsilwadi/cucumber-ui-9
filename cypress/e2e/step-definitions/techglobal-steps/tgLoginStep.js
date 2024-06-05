@@ -13,6 +13,6 @@ Then(/^user clicks Login button$/, () => {
 
 Then(/^user should see a "([^"]*)"$/, (message) => {
   message === 'You are logged in'
-    ? tgLoginPage.getErrorMessage().should('have.text', message)
-    : tgLoginPage.getSuccessMessage().should('have.text', message)
+    ? tgLoginPage.getSuccessMessage().should('have.text', message)
+    : tgLoginPage.getErrorMessage().should('have.text', message)
 })
