@@ -1,7 +1,7 @@
 const { Then, Given, When } = require('@badeball/cypress-cucumber-preprocessor')
-const TGBasePage = require('../../pages/TGBasePage')
+const TGHtmlElementsPage = require('../../pages/TGHtmlElementsPage')
 
-const tgBasePage = new TGBasePage()
+const tgHtmlElementsPage = new TGHtmlElementsPage()
 
 Given(/^user navigates to "([^"]*)"$/, (url) => {
   cy.visit(url)
@@ -15,6 +15,6 @@ Then(/^the URL should contain "([^"]*)"$/, (url) => {
   cy.url().should('contain', url)
 })
 
-Then(/^user should see the "([^"]*)" page heading$/, (message) => {
-  tgBasePage.getHeading().should('have.text', message)
+Then(/^user should see the "([^"]*)" page heading$/, (heading) => {
+  tgHtmlElementsPage.getHeading().should('have.text', heading)
 })

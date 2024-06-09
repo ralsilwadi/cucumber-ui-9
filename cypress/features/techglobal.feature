@@ -4,7 +4,7 @@ Feature: Interaction with TechGlobal HtmlElements page
     Given user navigates to "https://techglobal-training.com/frontend/"
     When user clicks on the "Html Elements" card
     Then user should see the "Html Elements" page heading
-    And the URL should contain "elements"
+    Then the URL should contain "elements"
 
   Scenario: Validate HTML elements card, Register and Sign in Buttons
     When user clicks on the "Register" button
@@ -19,10 +19,10 @@ Feature: Interaction with TechGlobal HtmlElements page
     And "Microsoft" should be selected in the second dropdown
 
   Scenario: Validate HTML Elements card, Interact with text inputs
-    When user enters "test input" into the input field "1"
-    And user enters "another test input" into the input field "2"
-    Then the input field "1" should contain "test input"
-    And the input field "2" should contain "another test input"
+    When user enters "test input" to input field "1"
+    When user enters "another test input" to input field "2"
+    Then the text input "1" should contain "test input"
+    And the text input "2" should contain "another test input"
 
   Scenario: Validate HTML Elements card, Toggle checkboxes and verify the state
     When user selects the "Microsoft" checkbox
