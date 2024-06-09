@@ -19,8 +19,10 @@ class SmartBearLoginPage {
         return cy.get('#ctl00_MainContent_btnUncheckAll')
       case 'Delete Selected':
         return cy.get('#ctl00_MainContent_btnDelete')
+      case 'Process':
+        return cy.get('#ctl00_MainContent_fmwOrder_InsertButton')
       default:
-      // code block
+        throw new Error('Invalid button provided')
     }
   }
 

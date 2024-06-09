@@ -49,87 +49,61 @@ Then(/^validate user sees "([^"]*)" message$/, (message) => {
   smartBearOrderPage.getDeletedMessage().should('contain', message)
 })
 
-// Then(/^validate below menu items are displayed$/, () => {
-//   return true
-// })
+When(/^user clicks on "([^"]*)" menu item$/, (menuItem) => {
+  smartBearOrderPage.getMenuItem(menuItem).click()
+})
 
-// When(/^user enters username as "([^"]*)"$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
+Then(/^validate below menu items are displayed$/, (dataTable) => {
+  if (!dataTable.rawTable) {
+    throw new Error('Data table is not provided or is invalid')
+  }
 
-// When(/^user enters password as "([^"]*)"$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
+  const items = dataTable.rawTable.flat()
 
-// When(/^user clicks on "([^"]*)" button$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
+  items.forEach((elem) => {
+    smartBearOrderPage.getMenuItem(elem).should('be.visible')
+  })
+})
 
-// Then(/^user should be routed to "([^"]*)"$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
+Then(/^user enters all product information$/, (dataTable) => {
+  if (!dataTable.rawTable) {
+    throw new Error('Data table is not provided or is invalid')
+  }
+  const info = dataTable.rawTable.flat()
 
-// When(/^user clicks on "([^"]*)" button$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
+  smartBearOrderPage.getProductFields().each(($el, index) => {
+    let attr = $el.prop('nodeName').toLowerCase()
+    if (attr === 'select') cy.wrap($el).select(info[index])
+    else cy.wrap($el).clear().type(info[index])
+  })
+})
 
-// When(/^user clicks on "([^"]*)" button$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
+Then(/^user enters all address information$/, (dataTable) => {
+  if (!dataTable.rawTable) {
+    throw new Error('Data table is not provided or is invalid')
+  }
+  const info = dataTable.rawTable.flat()
 
-// When(/^user enters username as "([^"]*)"$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
+  smartBearOrderPage.getAddressFields().each(($el, index) => {
+    cy.wrap($el).clear().type(info[index])
+  })
+})
 
-// When(/^user enters password as "([^"]*)"$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
+Then(/^user enters all payment information$/, (dataTable) => {
+  if (!dataTable.rawTable) {
+    throw new Error('Data table is not provided or is invalid')
+  }
+  const info = dataTable.rawTable.flat()
 
-// When(/^user clicks on "([^"]*)" button$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
+  smartBearOrderPage.getPaymentFields().each(($el, index) => {
+    let attr = $el.prop('nodeName').toLowerCase()
+    if (attr === 'label') cy.wrap($el).click()
+    else cy.wrap($el).clear().type(info[index])
+  })
+})
 
-// Then(/^user should be routed to "([^"]*)"$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
-
-// When(/^user clicks on "([^"]*)" menu item$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
-
-// When(/^user enters all product information$/, () => {
-//   return true
-// })
-
-// When(/^user enters all address information$/, () => {
-//   return true
-// })
-
-// When(/^user enters all payment information$/, () => {
-//   return true
-// })
-
-// When(/^user clicks on "([^"]*)" button$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
-
-// When(/^user clicks on "([^"]*)" menu item$/, (args1) => {
-//   console.log(args1)
-//   return true
-// })
-
-// Then(/^validate all information entered displayed correct with the order$/, () => {
-//   return true
-// })
+Then(/^validate all information entered displayed correct with the order$/, (dataTable) => {
+  dataTable.rawTable.flat().forEach((_, index, arr) => {
+    smartBearOrderPage.getNewestOrder().should('contain', arr[index])
+  })
+})
